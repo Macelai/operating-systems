@@ -4,7 +4,7 @@
 #include <sys/types.h>
 
 void *t_print() {
-	printf("Nova thread criada. TID = %u!\n", pthread_self());
+	printf("Nova thread criada. TID = %d!\n", pthread_self());
 }
 
 int main(int argc, char **argv) {
