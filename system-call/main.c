@@ -59,6 +59,7 @@ void removeEmployee(FILE *f) {
 			fseek(f, -sizeof(struct Employee), SEEK_CUR);
 			tmp.id = 0;
 			fwrite(&tmp, sizeof(struct Employee), 1, f);
+			printf("Sucess \n");
 			return;
 		}
 	}
@@ -139,6 +140,7 @@ int main(int argc, char *argv[]) {
 		int option = atoi(argv[2]);
 		FILE *f;
 		f = fopen(argv[1], "ab+");
+		fclose(f);
 		switch(option) {
 			case 1:
 				if ((f = fopen(argv[1], "ab+")) == NULL) {
