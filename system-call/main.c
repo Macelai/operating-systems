@@ -138,46 +138,47 @@ int main(int argc, char *argv[]) {
 	if (argc == 3) {
 		int option = atoi(argv[2]);
 		FILE *f;
+		f = fopen(argv[1], "ab+");
 		switch(option) {
 			case 1:
 				if ((f = fopen(argv[1], "ab+")) == NULL) {
 					printf("Error opening/creating the file");
 				} else {
 					addEmployee(f);
+					fclose(f);
 				}
-				fclose(f);
 				break;
 			case 2:
 				if ((f = fopen(argv[1], "rb+")) == NULL) {
 					printf("Error opening/creating the file");			
 				} else {
 					removeEmployee(f);
+					fclose(f);
 				}
-				fclose(f);
 				break;
 			case 3:
 				if ((f = fopen(argv[1], "rb")) == NULL) {
 					printf("Error opening/creating the file");
 				} else {
 					calculateAvarageSalaryByGender(f);
+					fclose(f);
 				}
-				fclose(f);
 				break;
 			case 4:
 				if ((f = fopen(argv[1], "rb")) == NULL) {
 					printf("Error opening/creating the file");
 				} else {
 					exportTextFile(f);					
+					fclose(f);
 				}
-				fclose(f);
 				break;
 			case 5:
 				if ((f = fopen(argv[1], "rb")) == NULL) {
 					printf("Error opening/creating the file");
 				} else {
 					compactData(f, argv[1]);					
+					fclose(f);
 				}
-				fclose(f);
 				break;
 		}
 	} else {
