@@ -51,13 +51,15 @@ void removeEmployee(FILE *f) {
 	while (1) {
 		struct Employee tmp;
 		fread(&tmp, sizeof(struct Employee), 1, f);
-		if (feof(f) != 0)
-			break;
+		if (feof(f) != 0) {
+			printf("Employee not found");
+			return;
+		}
 		if (id == tmp.id) {
 			fseek(f, -sizeof(struct Employee), SEEK_CUR);
 			tmp.id = 0;
 			fwrite(&tmp, sizeof(struct Employee), 1, f);
-			break;
+			return;
 		}
 	}
 }
@@ -73,6 +75,8 @@ void calculateAvarageSalaryByGender(FILE *f) {
 		fread(&tmp, sizeof(struct Employee), 1, f);
 		if (feof(f) != 0)
 			break;
+		if (tmp.id == 0)
+			continue;
 		if (tmp.gender == 'm') {
 			maleNumber++;
 			sumMale += tmp.salary;
